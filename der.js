@@ -1,10 +1,9 @@
 /* ===========================================================
-   MS ACADEMIA — lógica do sistema
-   Dados mockados representando o modelo do banco descrito no
-   documento de projeto (USUARIO, ALUNO, EXERCICIO, MAQUINA, etc.)
+   MS ACADEMIA — lógica do sistema - Unibra 
+   Dados (frame work) - base - exercícios iniciais e populares. Não posso esquecer de subir para o githu em forma publicaaaa.
 =========================================================== */
 
-// ---------- DADOS (simulando o banco de dados) ----------
+// ---------- DADOS (simulando o banco de dados - ver quem do grupo vai ficar com sql, e se vai ser necessário) ----------
 
 const MAQUINAS = [
   {
@@ -57,7 +56,8 @@ const EXERCICIOS = [
     comoExecutar: 'Posicione os pés um pouco à frente da barra, na largura dos ombros. Desça controlando o movimento até os quadris ficarem na altura dos joelhos, mantendo a coluna neutra.',
     errosComuns: 'Deixar os joelhos ultrapassarem muito a ponta dos pés; perder a curvatura natural da lombar durante a descida.',
     dicas: 'Respire fundo antes de descer e solte o ar ao subir. Mantenha o olhar à frente.',
-    obs: 'Aumentar carga apenas quando a execução completa estiver estável, sem compensações.'
+    obs: 'Aumentar carga apenas quando a execução completa estiver estável, sem compensações.',
+    videoId: '11d43Y8wV5A',
   },
   {
     id: 'e2', nome: 'Extensão de Joelho', categoria: 'Inferiores', maquina: 'Cadeira Extensora',
@@ -256,7 +256,7 @@ function abrirModalExercicio(id) {
   document.getElementById('modal-cat').textContent = ex.categoria + ' · ' + ex.maquina;
   document.getElementById('modal-titulo').textContent = ex.nome;
   document.getElementById('modal-corpo').innerHTML = `
-    <div class="modal-visual"><div class="play-icone" style="border-color:#FAF6F0;color:#FAF6F0;">▶</div><small>Vídeo demonstrativo do exercício</small></div>
+  <div class="modal-visual"><iframe width="100%" height="315" src="https://www.youtube.com/embed/${ex.videoId}" title="Vídeo demonstrativo" frameborder="0" allowfullscreen></iframe></div>
     <div class="bloco-modal"><h5>Como executar</h5><p>${ex.comoExecutar}</p></div>
     <div class="bloco-modal"><h5>Erros comuns</h5><p>${ex.errosComuns}</p></div>
     <div class="bloco-modal"><h5>Dicas de execução</h5><p>${ex.dicas}</p></div>
@@ -264,7 +264,7 @@ function abrirModalExercicio(id) {
   `;
   document.getElementById('sobreposicao').classList.add('ativa');
 }
-
+// vou colocar em link pq é menos pesadp!
 function abrirModalMaquina(id) {
   const m = MAQUINAS.find(x => x.id === id);
   document.getElementById('modal-cat').textContent = m.categoria;
@@ -297,7 +297,10 @@ function carregarExercicioAtivo() {
   document.getElementById('ea-nome').textContent = ex.nome;
   document.getElementById('ea-como').textContent = ex.comoExecutar;
   document.getElementById('ea-obs').textContent = ex.obs;
-
+const iframeVideo = document.querySelector('.video-mock iframe');
+if (iframeVideo) {
+  iframeVideo.src = `https://www.youtube.com/embed/${ex.videoId}`;
+}
   const listaSeries = document.getElementById('lista-series');
   const chave = item.exercicioId;
   if (!seriesFeitas[chave]) seriesFeitas[chave] = Array(item.series).fill(false);
