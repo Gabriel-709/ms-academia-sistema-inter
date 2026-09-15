@@ -15,6 +15,7 @@ const MAQUINAS = [
   },
   {
     id: 'm2', nome: 'Cadeira Extensora', categoria: 'Inferiores',
+    foto: 'https://www.kikos.com.br/media/catalog/product/cache/041e82462066eef1ae3402cf9c4986f8/f/o/fotos_site_c2s71_-_cadeira_extensora_-_linha_concept_ii_-_kikos_pro_-_sku_i002115.jpg',
     finalidade: 'Isolamento do quadríceps.',
     descricao: 'Equipamento sentado com apoio para as costas e rolo de resistência para os tornozelos.',
     comoUsar: ['Ajuste o encosto para que o joelho fique alinhado ao eixo da máquina.', 'Posicione o rolo acima do tornozelo.', 'Estenda a perna controladamente até quase a extensão total.'],
@@ -26,7 +27,9 @@ const MAQUINAS = [
     descricao: 'Equipamento com cabo e barra suspensa, utilizado sentado com apoio para as coxas.',
     comoUsar: ['Ajuste o apoio de coxas antes de sentar.', 'Segure a barra com pegada um pouco mais aberta que os ombros.', 'Puxe a barra em direção à parte superior do peito.', 'Retorne controlando o peso até a extensão dos braços.'],
     cuidados: 'Evitar balançar o tronco para gerar impulso. Não puxar a barra atrás da nuca.'
+   
   },
+
   {
     id: 'm4', nome: 'Supino Reto (Banco Livre)', categoria: 'Superiores',
     finalidade: 'Desenvolvimento de peitoral, ombros e tríceps.',
@@ -57,42 +60,47 @@ const EXERCICIOS = [
     errosComuns: 'Deixar os joelhos ultrapassarem muito a ponta dos pés; perder a curvatura natural da lombar durante a descida.',
     dicas: 'Respire fundo antes de descer e solte o ar ao subir. Mantenha o olhar à frente.',
     obs: 'Aumentar carga apenas quando a execução completa estiver estável, sem compensações.',
-    videoId: '11d43Y8wV5A',
+    videoId: 'TacQs5PxZsw',
   },
   {
     id: 'e2', nome: 'Extensão de Joelho', categoria: 'Inferiores', maquina: 'Cadeira Extensora',
     comoExecutar: 'Sentado, com o rolo apoiado acima do tornozelo, estenda a perna controladamente até quase a extensão total, sem travar o joelho.',
     errosComuns: 'Usar impulso do tronco; soltar o peso rapidamente na volta.',
     dicas: 'Contraia o quadríceps no topo do movimento por um segundo antes de descer.',
-    obs: 'Indicado como aquecimento articular antes de exercícios compostos.'
+    obs: 'Indicado como aquecimento articular antes de exercícios compostos.',
+    videoId: 'WEF-xCFB_t4',
   },
   {
     id: 'e3', nome: 'Puxada Alta', categoria: 'Superiores', maquina: 'Pulley Alto',
     comoExecutar: 'Sentado com apoio nas coxas, puxe a barra em direção à parte superior do peito, contraindo as escápulas.',
     errosComuns: 'Puxar a barra atrás da nuca; balançar o corpo para gerar impulso.',
     dicas: 'Imagine "levar os cotovelos ao bolso de trás" durante a puxada.',
-    obs: 'Alunos com limitação de ombro devem reduzir amplitude conforme orientação.'
+    obs: 'Alunos com limitação de ombro devem reduzir amplitude conforme orientação.',
+     videoId: 'x1MsU2cUBMY',
   },
   {
     id: 'e4', nome: 'Supino Reto', categoria: 'Superiores', maquina: 'Banco Livre',
     comoExecutar: 'Deitado no banco, desça a barra controladamente até próximo ao peito e empurre de volta à extensão dos cotovelos.',
     errosComuns: 'Arquear excessivamente a lombar; descer a barra rápido demais.',
     dicas: 'Mantenha as escápulas retraídas durante todo o movimento.',
-    obs: 'Sempre executar com observador presente ao trabalhar cargas próximas ao limite.'
+    obs: 'Sempre executar com observador presente ao trabalhar cargas próximas ao limite.',
+    videoId: 'EAlnA8j8A7c',
   },
   {
     id: 'e5', nome: 'Flexão de Joelho', categoria: 'Inferiores', maquina: 'Cadeira Flexora',
     comoExecutar: 'Flexione o joelho trazendo o rolo em direção aos glúteos, controlando o retorno até a extensão.',
     errosComuns: 'Levantar o quadril do banco; usar impulso ao invés de força controlada.',
     dicas: 'Movimento lento na fase de retorno intensifica o trabalho muscular.',
-    obs: 'Reduzir amplitude em caso de desconforto no joelho.'
+    obs: 'Reduzir amplitude em caso de desconforto no joelho.',
+    videoId: 'am0vxQYZkpw',
   },
   {
     id: 'e6', nome: 'Caminhada em Esteira', categoria: 'Cardio', maquina: 'Esteira Ergométrica',
     comoExecutar: 'Inicie em velocidade baixa, aumente gradualmente conforme o aquecimento do corpo.',
     errosComuns: 'Segurar-se no corrimão durante todo o percurso, reduzindo o gasto energético.',
     dicas: 'Use para aquecimento de 5 a 10 minutos antes do treino de força.',
-    obs: 'Indicado especialmente para alunos do perfil terceira idade e iniciantes.'
+    obs: 'Indicado especialmente para alunos do perfil terceira idade e iniciantes.',
+    videoId: 'zgJGgvE8mBA',
   },
 ];
 
@@ -243,12 +251,16 @@ function renderizarMaquinas(filtroCategoria) {
       </div>
       <div class="ficha-corpo">
         <p>${m.finalidade}</p>
-        <div class="ficha-tags"><span class="tag-mini">Modelo 3D em breve</span></div>
-        <button class="abrir" onclick="abrirModalMaquina('${m.id}')">Ver ficha completa →</button>
       </div>
+      <div class="ficha-tags">
+        <span class="tag-mini">Modelo 3D em breve</span>
+      </div>
+      <button class="abrir" onclick="abrirModalMaquina(\"${m.id}\")">Ver ficha completa →</button>
     </div>
   `).join('');
 }
+
+
 
 // ---------- MODAL ----------
 function abrirModalExercicio(id) {
@@ -267,15 +279,32 @@ function abrirModalExercicio(id) {
 // vou colocar em link pq é menos pesadp!
 function abrirModalMaquina(id) {
   const m = MAQUINAS.find(x => x.id === id);
+  
   document.getElementById('modal-cat').textContent = m.categoria;
   document.getElementById('modal-titulo').textContent = m.nome;
+  
   document.getElementById('modal-corpo').innerHTML = `
-    <div class="modal-visual"><div class="play-icone" style="border-color:#FAF6F0;color:#FAF6F0;">⟳</div><small>Modelo 3D navegável — em desenvolvimento (Fase 3)</small></div>
-    <div class="bloco-modal"><h5>Finalidade</h5><p>${m.finalidade}</p></div>
-    <div class="bloco-modal"><h5>Descrição</h5><p>${m.descricao}</p></div>
-    <div class="bloco-modal"><h5>Como utilizar</h5><ul>${m.comoUsar.map(p => `<li>${p}</li>`).join('')}</ul></div>
-    <div class="bloco-modal"><div class="aviso-cuidado"><strong>Cuidados:</strong> ${m.cuidados}</div></div>
+    <div class="modal-visual">
+      <img src="${m.foto}" alt="${m.nome}">
+    </div>
+    <div class="bloco-modal">
+      <h5>Descrição</h5>
+      <p>${m.descriçao}</p>
+    </div>
+    <div class="bloco-modal">
+      <h5>Como utilizar</h5>
+      <ul>
+        ${m.comousar.map(p => `<li>${p}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="bloco-modal">
+      <div class="aviso-cuidado">
+        <strong>Cuidados:</strong> ${m.cuidados}
+      </div>
+    </div>
   `;
+  
+  
   document.getElementById('sobreposicao').classList.add('ativa');
 }
 
